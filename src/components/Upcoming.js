@@ -4,7 +4,7 @@ import Today from './Today'
 
 function Upcoming(props) {
     return (
-        <section className='container'>
+        <div>
             <h3>Upcoming Birthdays</h3>
             <article key={props.id} className='person'>
                 <img src={props.image} alt={props.name} />
@@ -13,7 +13,7 @@ function Upcoming(props) {
                     <p>{props.age} years</p>
                 </div>
             </article>
-        </section>
+        </div>
 
 
     );
