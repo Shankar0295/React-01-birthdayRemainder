@@ -1,5 +1,5 @@
 import React from 'react'
-import Today from './Today'
+// import Today from './Today'
 // import data from '../data'
 
 function Upcoming(props) {
@@ -18,14 +18,5 @@ function Upcoming(props) {
 
     );
 }
-// export default function Upcoming({ data }) {
-//     return (
-//         <div>
-//             <h3>Upcoming Birthdays</h3>
-
-//         </div>
-//     )
-// }
-
 
 export default Upcoming;

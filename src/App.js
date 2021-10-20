@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import JsonData from './data.json'
 // import List from './List'
-import NoEvents from './components/NoEvents'
 import Today from './components/Today'
-import Upcoming from './components/Upcoming';
+// import Upcoming from './components/Upcoming';
 function App() {
   console.log(JsonData)
   return (
     <main>
-      <section className='container'>
-        <Today />
-      </section>
+      {/* <section className='container'> */}
+      <Today />
+      {/* </section> */}
     </main>
 
   )
