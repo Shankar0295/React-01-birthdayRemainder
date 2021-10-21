@@ -1,45 +1,42 @@
 import React, { useState } from 'react';
-// import Upcoming from './Upcoming';
-// import List from './List';
 import JsonData from '../data.json';
-import NoEvents from './NoEvents'
 
 const Today = () => {
     const [people, setPeople] = useState(JsonData);
     let currentDate = new Date()
     let month = currentDate.getUTCMonth() + 1; //months from 1-12.
     let day = currentDate.getUTCDate();
-    // var year = dateObj. getUTCFullYear();
+    let year = currentDate.getUTCFullYear();
     let newdate = month + "-" + day;
     const birthdayToDisplay = people.map((obj) => {
         let c_time = obj.dob.split('-');
         let pid = obj.id;
         let pname = obj.name;
-        let page = obj.age;
         let pimage = obj.image;
         let dob_month = c_time[1]
         let dob_date = c_time[2]
         let dob = dob_month + '-' + dob_date;
-        let newObj = [pid, pname, page, dob, pimage]
+        let age = Math.abs(year - c_time[0]);
+        console.log(age)
+        let newObj = [pid, pname, age, dob, pimage]
         return newObj
     }).filter(item => item[3] === newdate)
-    console.log(birthdayToDisplay, "filterd")
+
+    console.log(birthdayToDisplay)
 
     // To convert array to object for rendering
     const arrtoobj = []
-    for (let i = 0; i < birthdayToDisplay.length; i++) {
+    birthdayToDisplay.forEach((element, index) => {
         arrtoobj.push({
-            id: birthdayToDisplay[i][0],
-            name: birthdayToDisplay[i][1],
-            age: birthdayToDisplay[i][2],
-            dob: birthdayToDisplay[i][3],
-            image: birthdayToDisplay[i][4],
-        });
-    }
-    console.log(arrtoobj, "arra")
+            id: birthdayToDisplay[index][0],
+            name: birthdayToDisplay[index][1],
+            age: birthdayToDisplay[index][2],
+            dob: birthdayToDisplay[index][3],
+            image: birthdayToDisplay[index][4],
+        })
+    })
 
-
-
+    //JSX
     if (arrtoobj.length > 0) {
         return (
             <div>
@@ -51,7 +48,7 @@ const Today = () => {
                                 <img src={item.image} alt={item.name} />
                                 <div>
                                     <h4>{item.name}</h4>
-                                    <p>{item.age} years</p>
+                                    <p>{item.age} {item.age > 1 ? 'Years' : 'Year'}</p>
                                 </div>
                             </article>
                         );
@@ -61,7 +58,11 @@ const Today = () => {
             </div>
         )
     } else {
-        return <NoEvents />
+        return (<main>
+            <section className='container'>
+                <h3>Oops! No Birthdays for Today</h3>
+            </section>
+        </main>)
     }
 }
 
